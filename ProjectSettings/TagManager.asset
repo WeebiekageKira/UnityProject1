@@ -10,6 +10,8 @@ TagManager:
   - floor
   - rock
   - zombie
+  - key
+  - door
   layers:
   - Default
   - TransparentFX

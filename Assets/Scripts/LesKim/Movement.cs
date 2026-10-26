@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     private Rigidbody rb; //rb = rigidbody
     public Vector2 turn;
 
+    public bool hasKey = false;
+
     public bool level2 = false;
     public bool level3 = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,6 +76,13 @@ public class Movement : MonoBehaviour
             Debug.Log($"Coins collected {collected}");
         }
 
+        if (other.CompareTag("key"))
+        {
+            hasKey = true;
+            Debug.Log("Key tastes better than bread");
+        }
+        
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -84,6 +93,7 @@ public class Movement : MonoBehaviour
             Destroy(gameObject);
         }
 
+        
     }
 
     void OnCollisionEnter(Collision other)
@@ -99,6 +109,13 @@ public class Movement : MonoBehaviour
             Debug.Log(stamina);
             stamina++;
         }
+
+        if (other.gameObject.tag == "door" && hasKey == true)
+        {
+            Destroy(other.gameObject);
+        }
+
+    
 
     }
     void jump()
